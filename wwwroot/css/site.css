@@ -16,3 +16,13 @@ html {
 body {
   margin-bottom: 60px;
 }
+.input{
+    width: 25%;
+    margin-top: 10px;
+}
+.alert{
+    margin-top: 10px;
+}
+.btn-primary{
+    margin-top: 10px;
+}

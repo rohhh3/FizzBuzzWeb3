@@ -7,7 +7,7 @@
     <h1 class="display-4">Welcome @Model.Name</h1>
     <form method="post">
         <label asp-for="FizzBuzz.Number"></label>
-        <input asp-for="FizzBuzz.Number" class="form-control input" style="width: 25%; margin-top: 10px;"/><br />
+        <input asp-for="FizzBuzz.Number" class="form-control input"/>
         <button class="btn btn-primary" type="submit">Zatwierdź</button>
     </form>
     <span asp-validation-for="FizzBuzz.Number" class="text-danger"></span>
@@ -15,25 +15,25 @@
     {
         @if (Model.FizzBuzz.Number % 3 == 0 && Model.FizzBuzz.Number % 5 != 0)
         {
-            <div class="alert alert-primary" role="alert" style="margin-top: 10px;">
+            <div class="alert alert-primary" role="alert">
                 Fizz
             </div>
         }
         else if (Model.FizzBuzz.Number % 5 == 0 && Model.FizzBuzz.Number % 3 != 0)
         {
-            <div class="alert alert-primary" role="alert" style="margin-top: 10px;">
+            <div class="alert alert-primary" role="alert">
                 Buzz
             </div>
         }
         else if(Model.FizzBuzz.Number % 5 == 0 && Model.FizzBuzz.Number % 3 == 0)
         {
-            <div class="alert alert-success" role="alert" style="margin-top: 10px;">
+            <div class="alert alert-success" role="alert">
                 FizzBuzz
             </div>
         }
         else
         {
-            <div class="alert alert-danger" role="alert" style="margin-top: 10px;">
+            <div class="alert alert-danger" role="alert">
                 Liczba @Model.FizzBuzz.Number nie spełnia kryteriów FizzBuzz
             </div>
         }
