@@ -9,7 +9,7 @@ namespace FizzBuzzWeb.Pages
         private readonly ILogger<IndexModel> _logger;
         [BindProperty]
 
-        public FizzBuzzForm FizzBuzz { get; set; }
+        public FizzBuzzForm FizzBuzz { get; set; } = new FizzBuzzForm();
         [BindProperty(SupportsGet = true)]
         public string Name { get; set; }
 
