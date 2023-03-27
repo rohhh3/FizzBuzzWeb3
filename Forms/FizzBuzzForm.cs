@@ -1,12 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace FizzBuzzWeb.Forms
 {
     public class FizzBuzzForm
     {
-        [Display(Name = "Twój szczęśliwy numerek")]
-        [Required, Range(1, 1000, ErrorMessage = "Oczekiwana wartość {0} z zakresu {1} i {2}.")]
+        [DisplayName("Wprowadź rok")]
+        [Required(ErrorMessage = "Te pole jest wymagane.")]
+        [Range(1899, 2022, ErrorMessage = "Zakres 1899-2022") ]
+        public int Year { get; set; }
 
-        public int? Number { get; set; }
+        [DisplayName("Wprowadź imię")]
+        [Required(ErrorMessage = "Te pole jest wymagane.")]
+        [MaxLength(100, ErrorMessage = "Maksymalnie 100 znaków.")]
+        public string? Name { get; set; }
     }
 }

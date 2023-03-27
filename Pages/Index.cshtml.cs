@@ -11,8 +11,9 @@ namespace FizzBuzzWeb.Pages
         private readonly ILogger<IndexModel> _logger;
         [BindProperty]
 
-        public FizzBuzzForm FizzBuzz { get; set; } = new FizzBuzzForm();
+        public FizzBuzzForm FizzBuzz { get; set; }
         [BindProperty(SupportsGet = true)]
+
         public string Name { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
@@ -27,11 +28,26 @@ namespace FizzBuzzWeb.Pages
         }
         public IActionResult OnPost()
         {
+            string information, message;
+            if ((FizzBuzz.Year % 4 == 0 && FizzBuzz.Year % 100 != 0) || FizzBuzz.Year % 400 == 0)
+            {
+                information = "rok przestępny.";
+            }
+             
+            else
+            {
+                information = "rok nieprzestępny";
+            }
+               
+            message = FizzBuzz.Name + " urodził się w " + FizzBuzz.Year + " roku. "
+                    + "Był to " + information;
+
             if (ModelState.IsValid)
             {
-                HttpContext.Session.SetString("Data",
-                JsonConvert.SerializeObject(FizzBuzz));
-                return RedirectToPage("./SavedInSession");
+                ViewData["message"] = message;
+                HttpContext.Session.SetString("name", FizzBuzz.Name);
+                HttpContext.Session.SetInt32("year", FizzBuzz.Year);
+                HttpContext.Session.SetString("if_leap_year", information);
             }
             return Page();
         }

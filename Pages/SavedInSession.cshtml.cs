@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using System.Xml.Linq;
 
 namespace FizzBuzzWeb.Pages
 {
@@ -10,11 +11,19 @@ namespace FizzBuzzWeb.Pages
     {
         public FizzBuzzForm FizzBuzz { get; set; }
 
+        public string Name { get; set; }
+        public int?    Year { get; set; }
+        public string Information { get; set; }
+
         public void OnGet()
         {
-            var Data = HttpContext.Session.GetString("Data");
-            if (Data != null)
-                FizzBuzz = JsonConvert.DeserializeObject<FizzBuzzForm>(Data);
+            Name = HttpContext.Session.GetString("name");
+            Year = HttpContext.Session.GetInt32("year");
+            Information = HttpContext.Session.GetString("if_leap_year");
+        }
+        public IActionResult OnPost()
+        {
+            return Page();
         }
     }
 }
