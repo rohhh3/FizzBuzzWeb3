@@ -1,0 +1,14 @@
+﻿@page
+@model SavedInSessionModel
+@{
+    ViewData["Title"] = "Data in session";
+}
+<p>Dane w zapisane w sesji</p>
+@if (Model.FizzBuzz != null)
+{
+    <p>
+        @Html.DisplayNameFor(model => Model.FizzBuzz.Number):
+        @Model.FizzBuzz.Number
+    </p>
+}
+
