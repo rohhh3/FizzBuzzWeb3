@@ -14,5 +14,8 @@ namespace FizzBuzzWeb.Forms
         [Required(ErrorMessage = "Te pole jest wymagane.")]
         [MaxLength(100, ErrorMessage = "Maksymalnie 100 znaków.")]
         public string? Name { get; set; }
+        public string? Information { get;set; }
+
+        public List<FizzBuzzForm> People { get; set; }
     }
 }

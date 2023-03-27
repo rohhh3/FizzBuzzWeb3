@@ -18,5 +18,10 @@
         </div>
         <button type="submit" class="btn btn-primary">Zatwierdź</button>
     </form>
-    <p>@ViewData["message"]</p>
+    @if(Model.FizzBuzz != null)
+    {
+        <p>@Model.FizzBuzz.Name urodził się w @Model.FizzBuzz.Year roku. Był to 
+            @ViewData["Year"]
+        </p>
+    }
 </div>

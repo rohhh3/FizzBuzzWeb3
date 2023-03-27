@@ -11,14 +11,14 @@ namespace FizzBuzzWeb.Pages
     {
         public FizzBuzzForm FizzBuzz { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public int?    Year { get; set; }
         public string Information { get; set; }
 
         public void OnGet()
         {
-            Name = HttpContext.Session.GetString("name");
-            Year = HttpContext.Session.GetInt32("year");
+            Name        = HttpContext.Session.GetString("name");
+            Year        = HttpContext.Session.GetInt32("year");
             Information = HttpContext.Session.GetString("if_leap_year");
         }
         public IActionResult OnPost()

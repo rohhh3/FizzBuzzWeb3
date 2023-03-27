@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using System.Diagnostics.CodeAnalysis;
 
 namespace FizzBuzzWeb.Pages
 {
@@ -24,30 +25,26 @@ namespace FizzBuzzWeb.Pages
         public void OnGet()
         {
             if (string.IsNullOrWhiteSpace(Name))
-                Name = "User";
+               Name = "User";
         }
         public IActionResult OnPost()
         {
-            string information, message;
             if ((FizzBuzz.Year % 4 == 0 && FizzBuzz.Year % 100 != 0) || FizzBuzz.Year % 400 == 0)
             {
-                information = "rok przestępny.";
+                FizzBuzz.Information = "rok przestępny.";
             }
              
             else
             {
-                information = "rok nieprzestępny";
+                FizzBuzz.Information = "rok nieprzestępny";
             }
-               
-            message = FizzBuzz.Name + " urodził się w " + FizzBuzz.Year + " roku. "
-                    + "Był to " + information;
+            ViewData["year"] = FizzBuzz.Information;
 
             if (ModelState.IsValid)
             {
-                ViewData["message"] = message;
                 HttpContext.Session.SetString("name", FizzBuzz.Name);
                 HttpContext.Session.SetInt32("year", FizzBuzz.Year);
-                HttpContext.Session.SetString("if_leap_year", information);
+                HttpContext.Session.SetString("if_leap_year", FizzBuzz.Information);
             }
             return Page();
         }
