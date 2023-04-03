@@ -1,25 +1,25 @@
-using FizzBuzzWeb.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using System.Xml.Linq;
+using FizzBuzzWeb.Forms;
+using static System.Net.Mime.MediaTypeNames;
+using System.Reflection;
 
 namespace FizzBuzzWeb.Pages
 {
     public class SavedInSessionModel : PageModel
     {
-        public FizzBuzzForm FizzBuzz { get; set; }
-
-        public string? Name { get; set; }
-        public int?    Year { get; set; }
-        public string Information { get; set; }
+        public Session FizzBuzzSession { get; set; } = new Session();
 
         public void OnGet()
         {
-            Name        = HttpContext.Session.GetString("name");
-            Year        = HttpContext.Session.GetInt32("year");
-            Information = HttpContext.Session.GetString("if_leap_year");
+            var Data = HttpContext.Session.GetString("Data");
+            if(Data != null)
+            {
+                FizzBuzzSession = JsonConvert.DeserializeObject<Session>(Data);
+                HttpContext.Session.SetString("CurrentData", JsonConvert.SerializeObject(FizzBuzzSession));
+            }
         }
         public IActionResult OnPost()
         {
