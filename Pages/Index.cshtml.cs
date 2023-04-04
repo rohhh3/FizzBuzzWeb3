@@ -31,13 +31,6 @@ namespace FizzBuzzWeb.Pages
 
             ViewData["year"] = FizzBuzz.Information;
 
-            if (ModelState.IsValid)
-            {
-                HttpContext.Session.SetString("name", FizzBuzz.Name);
-                HttpContext.Session.SetInt32("year", FizzBuzz.Year);
-                HttpContext.Session.SetString("if_leap_year", FizzBuzz.Information);
-            }
-
             if(!String.IsNullOrEmpty(FizzBuzz.Name) && !String.IsNullOrEmpty(FizzBuzz.Year.ToString()))
             {
                 var CurrentData = HttpContext.Session.GetString("CurrentData");
@@ -45,7 +38,6 @@ namespace FizzBuzzWeb.Pages
                     FizzBuzzSession = JsonConvert.DeserializeObject<Session>(CurrentData);
 
                 FizzBuzzSession.SessionList.Add(FizzBuzz);
-                HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(FizzBuzzSession));
                 HttpContext.Session.SetString("CurrentData", JsonConvert.SerializeObject(FizzBuzzSession));
             }
             return Page();

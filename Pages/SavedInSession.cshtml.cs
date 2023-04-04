@@ -14,7 +14,7 @@ namespace FizzBuzzWeb.Pages
 
         public void OnGet()
         {
-            var Data = HttpContext.Session.GetString("Data");
+            var Data = HttpContext.Session.GetString("CurrentData");
             if(Data != null)
             {
                 FizzBuzzSession = JsonConvert.DeserializeObject<Session>(Data);
